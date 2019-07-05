@@ -2,6 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
+  Image,
   View,
   TouchableOpacity,
   TouchableHighlight,
@@ -142,12 +143,18 @@ export default class App extends React.Component {
     return (
       //aquí se hacen las filas con 3 cuadrados cada una y con el border quitamos los lados del cuadrado que no necesitamos.
       <View style={styles.container}>
+        
+        <View style={styles.centerContent}>
+              <Image style={styles.imgStyle} source ={require('./src/img/catDog.jpg')}/>
+            </View>
+
         <View
           style={{
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
           }}>
+
           <TouchableOpacity
             onPress={() => this.onTilePress(0, 0)}
             style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0 }]}>
@@ -264,5 +271,15 @@ color:'black',
 fontSize: 20,
   },
 
+  centerContent: {
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  
+  imgStyle:{
+    width: 200,
+    height: 150,
+    marginTop: 0
+  }
   
 });
