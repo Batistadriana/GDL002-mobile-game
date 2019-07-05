@@ -4,8 +4,8 @@ import {
   Text,
   View,
   TouchableOpacity,
+  TouchableHighlight,
   Alert,
-  Button,
 } from 'react-native';
 import { MaterialCommunityIcons as Icon } from 'react-native-vector-icons';
 
@@ -105,10 +105,18 @@ export default class App extends React.Component {
     this.setState({ currentPlayer: nextPlayer });
     let winner = this.getWinner();
     if (winner == 1) {
-      Alert.alert('El gato ha escapado');
+      Alert.alert(
+        '¡Guau!',
+        'El gato ha escapado',
+        [{ text:'Miau'}]
+        );
       this.initializeGame();
     } else if (winner == -1) {
-      Alert.alert('El perro atrapó al gato');
+      Alert.alert(
+        'Miau',
+        'El perro me ha atrapado',
+        [{text: 'Guau'}]
+        );
       this.initializeGame();
     }
   };
@@ -201,8 +209,15 @@ export default class App extends React.Component {
             {this.renderIcon(2, 2)}
           </TouchableOpacity>
         </View>
-        <View style={{ paddingTop: 70 }} />
-        <Button title="Empieza un nuevo juego" onPress={this.onNewGamePress} />
+        
+        <View >
+        
+          <TouchableHighlight onPress={this.onNewGamePress} style={styles.btn}>
+            <Text style={styles.txtBtn}> Nuevo Juego </Text>
+          </TouchableHighlight>
+      
+        </View>
+      
       </View>
     );
   }
@@ -231,4 +246,23 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 70,
   },
+
+  btn: {
+    width: 150,
+    height: 40,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 50,
+    marginBottom: 10,
+    borderRadius: 20,
+    borderWidth:5
+},
+  
+  txtBtn:{
+color:'black',
+fontSize: 20,
+  },
+
+  
 });
